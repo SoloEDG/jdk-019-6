@@ -15,13 +15,20 @@ export function save() {
 function point(v: Point) {
   return v && Number.isFinite(v.x) && Number.isFinite(v.y);
 }
+function node(v: unknown): v is Shape["nodes"][number] {
+  const n = v as Shape["nodes"][number];
+  return point(n) && point(n.in) && point(n.out);
+}
 function valid(s: Shape) {
   return (
     s &&
     typeof s.id === "string" &&
     typeof s.name === "string" &&
     Array.isArray(s.nodes) &&
-    s.nodes.every((n) => point(n) && point(n.in) && point(n.out)) &&
+    s.nodes.every(node) &&
+    (!s.holes ||
+      (Array.isArray(s.holes) &&
+        s.holes.every((h) => Array.isArray(h) && h.every(node)))) &&
     typeof s.fill === "string" &&
     /^(none|#[0-9a-f]{3,8})$/i.test(s.fill) &&
     typeof s.stroke === "string" &&

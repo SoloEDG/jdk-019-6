@@ -4,7 +4,10 @@ import { beginEdit } from "../../drawing";
 import { doc } from "../../../shared/document";
 import { move } from "../model/move";
 import { coordinates } from "../lib/coordinates";
-import type { Node } from "../../../shared/types";
+import type { Node, Shape } from "../../../shared/types";
+function nodesOf(s: Shape): Node[] {
+  return s.holes?.length ? [...s.nodes, ...s.holes.flat()] : s.nodes;
+}
 function drag(e: PointerEvent, n: Node, kind: string) {
   e.stopPropagation();
   beginEdit();
@@ -24,7 +27,7 @@ function drag(e: PointerEvent, n: Node, kind: string) {
 </script>
 <template>
   <g v-for="s in doc.shapes.filter((s) => doc.selected.includes(s.id))"
-    ><g v-for="n in s.nodes"
+    ><g v-for="n in nodesOf(s)"
       ><path
         :d="`M${n.in.x},${n.in.y} L${n.x},${n.y} L${n.out.x},${n.out.y}`"
         stroke="#9974ec"

@@ -16,6 +16,7 @@ import { NodeOverlay, coordinates, select } from "../features/nodes";
 import { Properties } from "../features/appearance";
 import { Layers, translateSelected } from "../features/layers";
 import { ExportBar, restore, save, storageStatus } from "../features/export";
+import { TracePanel, trace } from "../features/trace";
 import type { Shape } from "../shared/types";
 if (!restore()) seed();
 doc.selected = doc.shapes.length
@@ -122,10 +123,21 @@ window.addEventListener("keydown", (e) => {
             :data-shape="s.id"
             :d="path(s)"
             :fill="s.fill"
+            :fill-rule="s.holes?.length ? 'evenodd' : 'nonzero'"
             :stroke="s.stroke"
             :stroke-width="s.width"
             :opacity="s.opacity"
           />
+          <g v-if="trace.shapes.length" pointer-events="none" opacity="0.92">
+            <path
+              v-for="s in trace.shapes"
+              :key="s.id"
+              :d="path(s)"
+              :fill="s.fill"
+              fill-rule="evenodd"
+              stroke="none"
+            />
+          </g>
           <NodeOverlay />
         </svg>
       </div>
@@ -140,5 +152,6 @@ window.addEventListener("keydown", (e) => {
       </footer>
     </main>
     <Properties />
+    <TracePanel />
   </div>
 </template>

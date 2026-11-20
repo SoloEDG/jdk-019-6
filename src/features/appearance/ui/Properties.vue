@@ -54,7 +54,10 @@ import { colors } from "../lib/colors";
           @input="style('opacity', +($event.target as HTMLInputElement).value)"
       /></label>
       <h4>PATH DETAILS</h4>
-      <p>{{ active.nodes.length }} anchor points</p>
+      <p>
+        {{ active.nodes.length + (active.holes?.flat().length ?? 0) }} anchor
+        points
+      </p>
       <label
         >Closed path
         <input

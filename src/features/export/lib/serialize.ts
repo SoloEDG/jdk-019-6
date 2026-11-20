@@ -8,7 +8,8 @@ export function serialize(shapes: Shape[], paths: string[]) {
       group = s.group;
       if (group) content += `<g id="group-${group}-${i}">`;
     }
-    content += `<path d="${paths[i]}" fill="${s.fill}" stroke="${s.stroke}" stroke-width="${s.width}" opacity="${s.opacity}"/>`;
+    const rule = s.holes?.length ? ` fill-rule="evenodd"` : "";
+    content += `<path d="${paths[i]}" fill="${s.fill}"${rule} stroke="${s.stroke}" stroke-width="${s.width}" opacity="${s.opacity}"/>`;
   });
   if (group) content += "</g>";
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">${content}</svg>`;

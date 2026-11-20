@@ -10,6 +10,7 @@ export interface Shape {
   id: string;
   name: string;
   nodes: Node[];
+  holes?: Node[][];
   closed: boolean;
   fill: string;
   stroke: string;

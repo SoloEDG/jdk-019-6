@@ -270,3 +270,149 @@ aside p {
     width: 210px;
   }
 }
+
+/* trace bitmap panel */
+.trace-panel {
+  position: fixed;
+  top: 88px;
+  right: 250px;
+  width: 320px;
+  max-height: calc(100vh - 130px);
+  overflow: auto;
+  background: white;
+  border: 1px solid #e9e3ef;
+  border-radius: 10px;
+  box-shadow: 0 18px 50px #49366038;
+  padding: 16px;
+  z-index: 20;
+}
+.trace-panel h3 {
+  font-size: 12px;
+  margin: 0 0 14px;
+}
+.trace-panel h3 span {
+  color: #a294ae;
+  font-weight: normal;
+  font-size: 10px;
+  margin-left: 6px;
+}
+.trace-panel .x {
+  float: right;
+  padding: 2px 6px;
+  font-size: 10px;
+}
+.trace-panel .drop {
+  width: 100%;
+  border: 1px dashed #c9b8e6;
+  border-radius: 8px;
+  padding: 12px;
+  color: #8055ce;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trace-panel .thumb {
+  max-width: 100%;
+  max-height: 90px;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 6px;
+  background:
+    repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%) 0 0 / 12px 12px;
+}
+.trace-panel label {
+  display: block;
+  font-size: 11px;
+  margin: 14px 0 0;
+}
+.trace-panel label b {
+  float: right;
+  color: #8055ce;
+  font-weight: 600;
+}
+.trace-panel label input[type="range"] {
+  width: 100%;
+  margin-top: 6px;
+}
+.trace-panel label small {
+  display: block;
+  color: #a89bb2;
+  font-size: 9px;
+  margin-top: 2px;
+}
+.trace-panel .palette {
+  display: flex;
+  gap: 8px;
+  margin: 14px 0 4px;
+}
+.trace-panel .sw {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 1px #ddd;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  text-shadow: 0 0 3px #0009;
+}
+.trace-panel .sw.off {
+  opacity: 0.45;
+  border-style: dashed;
+}
+.trace-panel .busy {
+  margin-top: 14px;
+}
+.trace-panel .bar {
+  height: 5px;
+  border-radius: 3px;
+  background: #eee5fb;
+  overflow: hidden;
+}
+.trace-panel .bar i {
+  display: block;
+  height: 100%;
+  background: #8055d5;
+  transition: width 0.15s;
+}
+.trace-panel .busy p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #a89bb2;
+  margin: 6px 0 0;
+}
+.trace-panel .busy button {
+  padding: 3px 8px;
+  font-size: 10px;
+  color: #8055ce;
+}
+.trace-panel .note {
+  font-size: 10px;
+  color: #a89bb2;
+  margin: 12px 0 0;
+  line-height: 1.5;
+}
+.trace-panel .err {
+  color: #c0455e;
+}
+.trace-panel .row {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.trace-panel .row button {
+  flex: 1;
+  border: 1px solid #e0d5f0;
+  font-size: 11px;
+}
+.trace-panel .row .primary {
+  border: 0;
+}
+.trace-panel button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
